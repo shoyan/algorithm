@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #memo span {
+      background-color: blue;
+    }
+    #memo span > span {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+ <main id="memo">
+   Elm は JavaScript にコンパイルできる関数型プログラミング言語です。 ウェブサイトやウェブアプリケーションを作るツールという面では React のようなプロジェクトだと言えます。 Elm はシンプルであること、簡単に使えること、高品質であることを大切にしています。
+ </main> 
+ <script src="sample.js"></script>
+ <script>
+    const textDom = document.getElementById("memo")
+    let text = textDom.innerText
+    getData().forEach(d => {
+      text = text.replace(d.text, `<span>${d.text}</span>`);
+    });
+    console.log(text)
+    textDom.innerHTML = text
+
+ </script>
+</body>
+</html>
