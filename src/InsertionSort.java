@@ -7,9 +7,11 @@ public class InsertionSort {
 
             while (j >= 0 && arr[j] > key) {
                 arr[j + 1] = arr[j];
+                printArray(arr);
                 j = j - 1;
             }
             arr[j + 1] = key;
+            printArray(arr);
         }
     }
 
@@ -17,10 +19,12 @@ public class InsertionSort {
         for (int num : arr) {
             System.out.print(num + " ");
         }
+        System.out.println();
     }
 
     public static void main(String args[]) {
-        int[] list = {4, 2, 1, 5, 7, 6, 3, 8, 10, 9};
+        //int[] list = {4, 2, 1, 5, 7, 6, 3, 8, 10, 9};
+        int[] list = {4, 2, 5, 1};
         InsertionSort insertionSort = new InsertionSort();
         insertionSort.sort(list);
         printArray(list);
