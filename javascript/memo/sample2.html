@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #memo span {
+      background-color: blue;
+    }
+    #memo span > span {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <p>おはよう</p>
+ <main id="memo">
+   <p>こんにちは</p>
+   <p>Elm は JavaScript にコンパイルできる関数型プログラミング言語です。 ウェブサイトやウェブアプリケーションを作るツールという面では React のようなプロジェクトだと言えます。 Elm はシンプルであること、簡単に使えること、高品質であることを大切にしています。
+</p>
+ </main> 
+ <button onclick="start()">click</button>
+ <script src="sample.js"></script>
+ <script>
+    const textDom = document.getElementById("memo")
+    let text = textDom.innerHTML
+    getData().forEach(d => {
+      text = text.replace(d.text, `<span>${d.text}</span>`);
+    });
+    textDom.innerHTML = text
+
+    var selection;
+    const body = document.getElementById("memo").innerText
+    document.addEventListener("selectionchange", () => {
+      selection = window.getSelection();
+    })
+
+    function start() {
+      let selectedText = selection.toString()
+      selection.modify("extend", "backward", "paragraph")
+      let paragraph = String(selection)
+      let start = body.indexOf(paragraph) + paragraph.length - selectedText.length
+      let end = start + selectedText.length
+      console.log({ selectedText, start, end })
+    }
+
+    function getMemo(obj) {
+      const body = document.getElementById("memo").innerText
+      return body.slice(obj.start, obj.end)
+    }
+ </script>
+</body>
+</html>
