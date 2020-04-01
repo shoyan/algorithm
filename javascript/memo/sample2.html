@@ -39,9 +39,10 @@
 
     function start() {
       let selectedText = selection.toString()
-      selection.modify("extend", "backward", "paragraph")
+      selection.modify("extend", "forward", "line")
       let paragraph = selection.toString()
-      let start = body.indexOf(paragraph) + paragraph.length - selectedText.length
+      selection.modify("extend", "backward", "line")
+      let start = body.indexOf(paragraph)
       let end = start + selectedText.length
       console.log({ selectedText, start, end })
     }
