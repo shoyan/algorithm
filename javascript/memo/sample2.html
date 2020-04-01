@@ -40,7 +40,7 @@
     function start() {
       let selectedText = selection.toString()
       selection.modify("extend", "backward", "paragraph")
-      let paragraph = String(selection)
+      let paragraph = selection.toString()
       let start = body.indexOf(paragraph) + paragraph.length - selectedText.length
       let end = start + selectedText.length
       console.log({ selectedText, start, end })
