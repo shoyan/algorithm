@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #memo span {
+      background-color: blue;
+    }
+    #memo span > span {
+      background-color: green;
+    }
+    #memo span > span > span {
+      background-color: yellow;
+    }
+    #memo span > span > span > span{
+      background-color:  orange;
+    }
+    #memo span > span > span > span > span {
+      background-color:  red;
+    }
+  </style>
+</head>
+<body>
+ <main id="memo">
+    <h2>返品とは</h2>
+    <p>
+      取引が終わり無事にお互い満足して・・・なら良いのですが、物を扱う以上そうすんなり終わる事ばかりでもありません。 不良品や店側の手違いでお客さんが満足せず、品物が返品されることもあります。
+      返品は主に店側の過失によりお客さんから物を戻されたときに行う処理です。
+    </p>
+ </main> 
+ <script src="sample4.js"></script>
+ <script>
+    const textDom = document.getElementById("memo")
+    let text = textDom.innerText
+    const arr = Array.from(text)
+    const data = getData()
+
+    function calcData(d, index) {
+      const _data = getData()
+      d = Object.assign({}, d)
+      console.log("処理まえ", d)
+      for(let i = 0; i < index; i++) {
+        if (_data[i].start < _data[index].start) {
+          console.log(`startを加算します ${_data[i].start} < ${_data[index].start}`)
+          d.start++
+          d.end++
+        }
+        if (_data[i].end < _data[index].start) {
+          console.log(`startを加算します ${_data[i].end } < ${_data[index].start}`)
+          d.start++
+        }
+        if (_data[i].end < _data[index].end) {
+          console.log(`endを加算します ${_data[i].end} < ${_data[index].end}`)
+          d.end++
+        }
+      }
+      d.end++
+      console.log("処理ご", d)
+      return d
+    }
+    
+    data.forEach((d, i) => {
+      console.log(i,d.start, d.end, d.文章該当位置)
+      d = calcData(d, i)
+      arr.splice(d.start, 0, '<span>');
+      arr.splice(d.end, 0, '</span>');
+      console.log(d, arr)
+    });
+    textDom.innerHTML = arr.join("")
+ </script>
+</body>
+</html>

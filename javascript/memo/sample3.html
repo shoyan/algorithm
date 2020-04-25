@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #memo span {
+      background-color: blue;
+    }
+    #memo span > span {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+ <main id="memo">
+    <h2>返品とは</h2>
+    <p>
+      取引が終わり無事にお互い満足して・・・なら良いのですが、物を扱う以上そうすんなり終わる事ばかりでもありません。 不良品や店側の手違いでお客さんが満足せず、品物が返品されることもあります。
+      返品は主に店側の過失によりお客さんから物を戻されたときに行う処理です。
+    </p>
+ </main> 
+ <script src="sample3.js"></script>
+ <script>
+    const textDom = document.getElementById("memo")
+    let text = textDom.innerHTML
+    getData().forEach(d => {
+      text = text.replace(d.text, `<span>${d.text}</span>`);
+    });
+    console.log(text)
+    textDom.innerHTML = text
+
+ </script>
+</body>
+</html>
