@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="style.css" />
+  <title>memo・ユーザID連携</title>
+
+</head>
+
+<body onContextmenu="customMenu(event)">
+
+  <button onclick="login()">ログイン</button>
+  <button onclick="logout()">ログアウト</button>
+  <button onclick="start()">click</button>
+
+  <main id="memo">
+    <h2>返品とは</h2>
+    <p>
+      取引が終わり無事にお互い満足して・・・なら良いのですが、物を扱う以上そうすんなり終わる事ばかりでもありません。 不良品や店側の手違いでお客さんが満足せず、品物が返品されることもあります。
+      返品は主に店側の過失によりお客さんから物を戻されたときに行う処理です。
+    </p>
+  </main>
+  <div class="memo_space"><button class="close" onclick="close_memo_space()">メモを閉じる</button></div>
+  <div id="contextmenu">
+    <button onClick="menu1()" class="list-decoration">メモを書き込む</button>
+    <button onClick="menu2()" class="list-decoration">文字をコピーする</button>
+    <button onClick="menu3()" class="list-decoration">間違いを報告する</button>
+  </div>
+
+  <div id="memoarea">
+    <div class="cancel" onclick="close_memo()"></div>
+    <p style="color: red">
+      メモの内容を入力してください。
+    </p>
+    <input type="hidden" id="selectedText" name="selectedText" value="" />
+    <textarea id="memocontents" cols="30" rows="4"></textarea>
+    <br><br><button onClick="send_memo()">メモを書き込む</button>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+  <!-- FireBase関連 -->
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/6.2.4/firebase-firestore.js"></script>
+  <script src="memo.js"></script>
+</body>
+</html>

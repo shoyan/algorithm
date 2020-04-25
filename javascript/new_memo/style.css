@@ -1,0 +1,68 @@
+.memo_space {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  background-color: white;
+  width: 300px;
+  border-left: 1px solid #999;
+  overflow: scroll;
+}
+
+.cancel {
+  display: inline-block;
+  position: relative;
+  margin: 0 20px 0 7px;
+  padding: 0;
+  width: 4px;
+  height: 20px;
+  background: #666;
+  transform: rotate(45deg);
+}
+
+.cancel:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -8px;
+  width: 20px;
+  height: 4px;
+  margin-top: -2px;
+  background: #666;
+}
+
+.fusen {
+  min-width: 200px;
+  white-space: pre-wrap;
+  font-size: 0.9em;
+  margin: 1.6em 0;
+  padding: 1em;
+  /* グラデーションで折り目がついた感じに */
+  background: linear-gradient(to right, #ffffcc 0%, #f1f1c1 0.5%, #f1f1c1 13%, #ffffcc 16%);
+  display: none;
+}
+
+.fusen::after {
+  content: "";
+  display: block;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  transform: rotate(2deg);
+}
+
+.under-line {
+  border-bottom: 1px dotted #333;
+}
+
+#memo span {
+  background-color: lightcyan;
+}
+
+#memo span>span {
+  background-color: honeydew;
+}
+
+#memo span>span>span {
+  background-color: lightgoldenrodyellow;
+}
