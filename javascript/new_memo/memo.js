@@ -196,7 +196,6 @@ firebase.auth().onAuthStateChanged(function (_user) {
 
     window.onload = function () {
       const memo_space = document.querySelector(".memo_space");
-      memo_space.style.height = window.innerHeight + "px";
 
       // 要素への参照を取得
 
