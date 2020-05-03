@@ -50,8 +50,9 @@ firebase.auth().onAuthStateChanged(function (_user) {
 });
 
 
+    let selectedText
     function customMenu(e) {
-      const selectedText = start()
+      selectedText = start()
       if (selectedText) {
         document.getElementById("contextmenu").style.left = e.pageX + "px";
         document.getElementById("contextmenu").style.top = e.pageY + "px";
@@ -63,10 +64,9 @@ firebase.auth().onAuthStateChanged(function (_user) {
 
     function menu1() {
       if (user) {
-        const selectedText = document.getSelection().toString();
+        document.querySelector("#memoarea .target-str").innerText = selectedText
         document.getElementById("selectedText").value = selectedText;
         document.getElementById("contextmenu").getClientRects()[0].left;
-        console.log(document.getElementById("contextmenu").getClientRects());
         contextmenu = document.getElementById("contextmenu").getClientRects()[0];
 
         document.getElementById("memoarea").style.left = contextmenu.left + "px";
@@ -245,6 +245,7 @@ firebase.auth().onAuthStateChanged(function (_user) {
               `<div class="cancel-box" onclick="close_memo(this)">` +
               `<div class="cancel"></div> ` +
               `</div>` +
+              `<div>文章該当位置: ${data.文章該当位置}</div>` +
               `<br><textarea id="${data.id}" cols="30" rows="4">${data.メモ内容}</textarea>` +
               `<br><br>👍：` +
               data.イイネ数 +
@@ -307,7 +308,6 @@ firebase.auth().onAuthStateChanged(function (_user) {
       let end = start + selectedText.length
       selectedObj["end"] = end
       selectedObj["selectedText"] = selectedText
-      console.log({ selectedText, start, end })
       return selectedText
     }
 
