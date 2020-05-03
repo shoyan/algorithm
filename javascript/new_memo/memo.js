@@ -16,7 +16,7 @@ var user;
 
 function login() {
   var email = "mathgamer.net@gmail.com";
-  var password = "123456";
+  var password = "dsa9z45re7";
   firebase.auth().signInWithEmailAndPassword(email, password).then(function () {
     location.reload()
   }).catch(function (error) {
@@ -183,11 +183,8 @@ firebase.auth().onAuthStateChanged(function (_user) {
     }
 
     // メモを閉じる
-    function close_memo() {
-      document.getElementById("memoarea").style.display = "none";
-      Array.from(document.getElementsByClassName("fusen")).forEach(function (fusen) {
-        fusen.style.display = "none"
-      })
+    function close_memo(event) {
+      event.parentNode.style.display = "none"
     }
 
     function close_memo_space() {
@@ -249,7 +246,9 @@ firebase.auth().onAuthStateChanged(function (_user) {
           create_fusen = document.createElement("div");
           if (user && user.uid === data.ユーザID) {
             create_fusen.innerHTML =
-              `<div class="cancel" onclick="close_memo()"></div> ` +
+              `<div class="cancel-box" onclick="close_memo(this)">` +
+              `<div class="cancel"></div> ` +
+              `</div>` +
               `<br><textarea id="${data.id}" cols="30" rows="4">${data.メモ内容}</textarea>` +
               `<br><br>👍：` +
               data.イイネ数 +
@@ -257,7 +256,7 @@ firebase.auth().onAuthStateChanged(function (_user) {
               `<button onClick="revision_memo('${data.id}')">メモを修正する</button>`;
           } else {
             create_fusen.innerHTML =
-              `<div class="cancel" onclick="close_memo()"></div> ` +
+              `<div class="cancel" onclick="close_memo(this)"></div> ` +
               `<br>${data.メモ内容}` +
               `<br><br><button onClick="iineplus('${data.id}')">👍：` +
               data.イイネ数

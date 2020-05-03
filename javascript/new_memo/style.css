@@ -9,6 +9,10 @@
   overflow: scroll;
   height: 100vh;
 }
+.cancel-box {
+    width: 20px;
+    padding: 10px;
+}
 
 .cancel {
   display: inline-block;
