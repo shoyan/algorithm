@@ -8,6 +8,10 @@ firebase.initializeApp({
   appId: "1:733843168310:web:1aa23bde7d4373dd"
 });
 
+document.body.addEventListener("click", function (e) {
+  document.getElementById("contextmenu").style.display = "none";
+});
+ 
 var db = firebase.firestore();
 
 var create_fusen;
@@ -45,11 +49,6 @@ firebase.auth().onAuthStateChanged(function (_user) {
   }
 });
 
-    window.onload = function () {
-      document.body.addEventListener("click", function (e) {
-        document.getElementById("contextmenu").style.display = "none";
-      });
-    };
 
     function customMenu(e) {
       const selectedText = start()
@@ -151,15 +150,13 @@ firebase.auth().onAuthStateChanged(function (_user) {
 
     //メモを編集する
 
-    function revision_memo(id) {
-
+    function revision_memo(event, id) {
       db.collection("databasetest")
         .doc(id)
         .update({
-          "メモ内容": document.getElementById(id).value
+          "メモ内容": event.parentNode.querySelector("textarea").value
         })
       //リロード
-
       setTimeout(function () {
         location.reload();
       }, 500);
@@ -253,7 +250,7 @@ firebase.auth().onAuthStateChanged(function (_user) {
               `<br><br>👍：` +
               data.イイネ数 +
               `</button><br><br><button onClick="deletememo('${data.id}')">メモを削除する</button>` +
-              `<button onClick="revision_memo('${data.id}')">メモを修正する</button>`;
+              `<button onClick="revision_memo(this, '${data.id}')">メモを修正する</button>`;
           } else {
             create_fusen.innerHTML =
               `<div class="cancel" onclick="close_memo(this)"></div> ` +

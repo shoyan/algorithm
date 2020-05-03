@@ -71,3 +71,74 @@
 #memo span>span>span {
   background-color: lightgoldenrodyellow;
 }
+
+#contextmenu {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 200px;
+  height: 100px;
+  list-style: none;
+  /* デフォルトのアイコンを消す */
+  margin: 0;
+  /* デフォルト指定上書き */
+  padding: 0;
+  /* デフォルト指定上書き */
+
+}
+
+#contextmenu button {
+  cursor: pointer;
+  width: 150px;
+  color: black;
+  border-left: solid 8px orange;
+  /*左側の線*/
+  background: whitesmoke;
+  /*背景色*/
+  margin-bottom: 0px;
+  /*下のバーとの余白*/
+  line-height: 1.5;
+  border-radius: 0 15px 15px 0;
+  /*右側の角だけ丸く*/
+  padding: 0.5em;
+  list-style-type: none !important;
+  /* 左寄せ */
+  text-align: left;
+}
+
+/* 入力用のメモ */
+
+#memoarea {
+  display: none;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  list-style: none;
+  /* デフォルトのアイコンを消す */
+  margin: 0;
+  /* デフォルト指定上書き */
+  padding: 0;
+  /* デフォルト指定上書き */
+  min-width: 200px;
+  /* white-space: pre-wrap; */
+  font-size: 0.9em;
+  margin: 1.6em 0;
+  padding: 1em;
+  position: absolute;
+  /* グラデーションで折り目がついた感じに */
+  background: linear-gradient(to right, #ffffcc 0%, #f1f1c1 0.5%, #f1f1c1 13%, #ffffcc 16%);
+}
+
+#memoarea::after {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  bottom: 5px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+  transform: rotate(2deg);
+}
+
