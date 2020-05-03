@@ -165,18 +165,17 @@ firebase.auth().onAuthStateChanged(function (_user) {
 
     //イイネを追加する
 
-    function iineplus(id) {
-
-      db.collection("databasetest")
-        .doc(id)
-        .update({
-          "イイネ数": firebase.firestore.FieldValue.increment(1)
-        })
-      //リロード
-
-      setTimeout(function () {
-        location.reload();
-      }, 500);
+    function iineplus(event, id) {
+      if (!localStorage.getItem(id)) {
+        db.collection("databasetest")
+          .doc(id)
+          .update({
+            "イイネ数": firebase.firestore.FieldValue.increment(1)
+          })
+        localStorage.setItem(id, true);
+        const iineHTML  = event.parentNode.querySelector("button span")
+        iineHTML.innerText = ++iineHTML.innerText
+      }
     }
 
     // メモを閉じる
@@ -255,8 +254,8 @@ firebase.auth().onAuthStateChanged(function (_user) {
             create_fusen.innerHTML =
               `<div class="cancel" onclick="close_memo(this)"></div> ` +
               `<br>${data.メモ内容}` +
-              `<br><br><button onClick="iineplus('${data.id}')">👍：` +
-              data.イイネ数
+              `<br><br><button onClick="iineplus(this, '${data.id}')">👍：` +
+              `<span>${data.イイネ数}</span>`
           }
           create_fusen.classList.add("test" + data.id, "fusen");
           memo_space.appendChild(create_fusen);
